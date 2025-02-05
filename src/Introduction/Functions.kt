@@ -1,4 +1,4 @@
-package Basic
+package Introduction
 
 //Default Parameter Values and Named Arguments
 
@@ -20,7 +20,8 @@ fun multiply(x: Int, y: Int) = x * y
 //Varargs allow you to pass any number of arguments by separating them with commas.
 
 fun printAll(vararg messages: String) {
-    for (m in messages) println(m)
+    for (m in messages)
+        println(m)
 }
 
 fun printAllWithPrefix(vararg messages: String, prefix: String) {
@@ -29,7 +30,7 @@ fun printAllWithPrefix(vararg messages: String, prefix: String) {
 }
 
 fun log(vararg entries: String) {
-    printAll(*entries)
+    printAll(*entries) // the special spread operator * that lets you pass in *entries (a vararg of String) instead of entries (an Array<String>).
 }
 
 
@@ -56,6 +57,16 @@ fun main() {
 
 //Operator Functions
 //Certain functions can be "upgraded" to operators, allowing their calls with the corresponding operator symbol.
+
+    infix fun Int.shl(x: Int): Int {
+       return shl(x) + x
+    }
+
+    // calling the function using the infix notation
+    println(1 shl 2)
+
+    // is the same as
+    1.shl(2)
 
     // we can use both infix and operator in same function
     infix operator fun Int.times(str: String): String = str.repeat(this)
